@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "a5f05f84-bfa2-4f40-ad48-5428b32f0964",
+		"name": "Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20256652"
+	},
+	"item": [
+		{
+			"name": "Staff Retrieval API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/staff/retrieve?employeeNumber=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"staff",
+						"retrieve"
+					],
+					"query": [
+						{
+							"key": "employeeNumber",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Staff Registration API",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"surname\": \"Test\",\r\n    \"otherNames\": \"Test\",\r\n    \"dateOfBirth\": \"02-10-2024\",\r\n    \"idPhoto\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/staff/register?validationCode=5212151126",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"staff",
+						"register"
+					],
+					"query": [
+						{
+							"key": "validationCode",
+							"value": "5212151126"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Staff Update API",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dateOfBirth\": \"02-10-2024\",\r\n    \"idPhoto\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/staff/update?employeeNumber=6243ea94-0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"staff",
+						"update"
+					],
+					"query": [
+						{
+							"key": "employeeNumber",
+							"value": "6243ea94-0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate validation code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/staff/generateValidationCode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"staff",
+						"generateValidationCode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Performance Monitor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin/metrics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

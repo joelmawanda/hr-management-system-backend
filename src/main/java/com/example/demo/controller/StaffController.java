@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.DTO.StaffDTO;
 import com.example.demo.DTO.StaffUpdateDTO;
 import com.example.demo.entity.Staff;
+import com.example.demo.response.ApiResponse;
+import com.example.demo.response.Constants;
 import com.example.demo.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,16 +24,13 @@ public class StaffController {
 
     // Generate validation code
     @GetMapping("/generateValidationCode")
-    public ResponseEntity<String> generateStaffValidationCode() {
+    public ResponseEntity<?> generateStaffValidationCode() {
 
         String validationCode = staffService.generateValidationCode();
-
         Staff newStaff = new Staff();
         newStaff.setValidationCode(validationCode);
-
         staffService.saveStaff(newStaff);
-
-        return ResponseEntity.ok("Your validation code is : " + newStaff.getValidationCode() + " please continue to registration");
+        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Your validation code is : " + newStaff.getValidationCode()), HttpStatus.OK);
     }
 
     //Staff registration API

@@ -1,12 +1,18 @@
 package com.example.demo.service;
 
+import com.example.demo.DTO.AuthRequestDTO;
 import com.example.demo.DTO.StaffDTO;
 import com.example.demo.DTO.StaffUpdateDTO;
 import com.example.demo.entity.Staff;
+import com.example.demo.entity.UserInfo;
 import com.example.demo.exception.InvalidVerificationCodeException;
 import com.example.demo.exception.NoStaffFoundException;
 import com.example.demo.repository.StaffRepository;
+import com.example.demo.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +22,13 @@ import java.util.UUID;
 public class StaffService {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private StaffRepository staffRepository;
+
+    @Autowired
+    private UserInfoRepository userInfoRepository;
 
     // Update the staff member's details
     public Staff updateStaff(String employeeNumber, StaffUpdateDTO staffUpdateDTO) {
@@ -83,5 +95,22 @@ public class StaffService {
         // Generate a random 10-character employee number
         return UUID.randomUUID().toString().substring(0, 10);
     }
+
+    // Create the user member's details
+    public UserInfo saveUser(AuthRequestDTO authRequestDTO) {
+        Optional<UserInfo> userOptional = userInfoRepository.findByName(authRequestDTO.getUsername());
+
+        if (userOptional.isPresent()) {
+            throw new InvalidVerificationCodeException("User already exists");
+        }
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setName(authRequestDTO.getUsername());
+        userInfo.setPassword(passwordEncoder.encode(authRequestDTO.getPassword()));
+        userInfo.setRoles("ADMIN");
+
+        return userInfoRepository.save(userInfo);
+    }
+
 }
 

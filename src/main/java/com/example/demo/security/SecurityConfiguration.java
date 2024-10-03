@@ -41,7 +41,7 @@ public class SecurityConfiguration {
         return http.cors().configurationSource(corsConfigurationSource()).and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/staff/authenticate", "/api/staff/register/user", "/customer-docs/**", "/customer-docs/ui/**").permitAll()
+                .requestMatchers("/api/staff/authenticate", "/api/staff/register/user", "/api/staff/generateValidationCode", "/api/staff/register", "/customer-docs/**", "/customer-docs/ui/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

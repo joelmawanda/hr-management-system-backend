@@ -38,19 +38,19 @@ public class StaffController {
         Staff staffDetails = staffService.saveStaffDetails(validationCode, staffDTO);
         return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff created successfully with employee number: " + staffDetails.getEmployeeNumber()), HttpStatus.OK);
     }
-    
+
     //Staff Retrieval API
     @GetMapping("/retrieve")
     public ResponseEntity<?> retrieveStaff(@RequestParam(required = false) String employeeNumber) {
         if (employeeNumber != null) {
             Optional<Staff> staff = staffService.retrieveStaffByEmployeeNumber(employeeNumber);
             if (staff.isPresent()) {
-                return ResponseEntity.ok(staff.get());
+                return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff details", staff.get()), HttpStatus.OK);
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Staff not found");
+                return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_FAILURE_CODE, Constants.OPERATION_FAILED_DESCRIPTION, "Staff not found"), HttpStatus.OK);
             }
         } else {
-            return ResponseEntity.ok(staffService.retrieveAllStaff());
+            return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff details", staffService.retrieveAllStaff()), HttpStatus.OK);
         }
     }
 

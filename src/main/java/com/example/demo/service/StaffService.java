@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.DTO.StaffDTO;
 import com.example.demo.DTO.StaffUpdateDTO;
 import com.example.demo.entity.Staff;
+import com.example.demo.exception.InvalidVerificationCodeException;
+import com.example.demo.exception.NoStaffFoundException;
 import com.example.demo.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,7 @@ public class StaffService {
     public Staff updateStaff(String employeeNumber, StaffUpdateDTO staffUpdateDTO) {
         Optional<Staff> staff = staffRepository.findByEmployeeNumber(employeeNumber);
         if (!staff.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Staff not found");
+            throw new NoStaffFoundException("Staff not found");
         }
 
         Staff existingStaff = staff.get();
@@ -38,13 +40,13 @@ public class StaffService {
         Optional<Staff> staffOptional = staffRepository.findByValidationCode(validationCode);
 
         if (!staffOptional.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid Verification Code");
+            throw new InvalidVerificationCodeException("Invalid Verification Code");
         }
 
         Staff existingStaff = staffOptional.get();
 
         if (existingStaff.isValidationCodeUsed()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This validation code has already been used.");
+            throw new InvalidVerificationCodeException("This validation code has already been used.");
         }
 
         existingStaff.setSurname(staffDTO.getSurname());

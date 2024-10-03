@@ -58,7 +58,7 @@ public class StaffController {
     @PutMapping("/update")
     public ResponseEntity<?> updateStaff(@RequestParam String employeeNumber, @RequestBody StaffUpdateDTO staffUpdateDTO) {
         Staff updatedStaff = staffService.updateStaff(employeeNumber, staffUpdateDTO);
-        return ResponseEntity.ok("Staff details updated successfully");
+        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff details updated successfully"), HttpStatus.OK);
     }
 }
 

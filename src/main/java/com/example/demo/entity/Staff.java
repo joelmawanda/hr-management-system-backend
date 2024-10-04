@@ -20,7 +20,7 @@ public class Staff {
     private String surname;
     private String otherNames;
     private LocalDate dateOfBirth;
-    
+
     @Column(columnDefinition = "TEXT")
     private String idPhoto;  // Base64 encoded string
     private String employeeNumber;  // Unique identifier

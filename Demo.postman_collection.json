@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/staff/retrieve?employeeNumber=1",
+					"raw": "http://localhost:8080/api/staff/retrieve?employeeNumber=d7ed6c9b-c",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -26,7 +26,7 @@
 					"query": [
 						{
 							"key": "employeeNumber",
-							"value": "1"
+							"value": "d7ed6c9b-c"
 						}
 					]
 				}
@@ -36,11 +36,14 @@
 		{
 			"name": "Staff Registration API",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"surname\": \"Test\",\r\n    \"otherNames\": \"Test\",\r\n    \"dateOfBirth\": \"02-10-2024\",\r\n    \"idPhoto\": \"\"\r\n}",
+					"raw": "{\r\n    \"surname\": \"Tests\",\r\n    \"otherNames\": \"Tests\",\r\n    \"dateOfBirth\": \"2024-10-02\",\r\n    \"idPhoto\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -48,7 +51,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/staff/register?validationCode=5212151126",
+					"raw": "http://localhost:8080/api/staff/register?validationCode=3673850986",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -62,7 +65,7 @@
 					"query": [
 						{
 							"key": "validationCode",
-							"value": "5212151126"
+							"value": "3673850986"
 						}
 					]
 				}
@@ -76,7 +79,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dateOfBirth\": \"02-10-2024\",\r\n    \"idPhoto\": \"\"\r\n}",
+					"raw": "{\r\n    \"dateOfBirth\": \"01-01-2024\",\r\n    \"idPhoto\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,7 +87,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/staff/update?employeeNumber=6243ea94-0",
+					"raw": "http://localhost:8080/api/staff/update?employeeNumber=61f33dc3-0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -98,7 +101,7 @@
 					"query": [
 						{
 							"key": "employeeNumber",
-							"value": "6243ea94-0"
+							"value": "61f33dc3-0"
 						}
 					]
 				}
@@ -108,6 +111,9 @@
 		{
 			"name": "Generate validation code",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -145,6 +151,129 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Test\",\r\n    \"password\": \"Test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/staff/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"staff",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Registration",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Test\",\r\n    \"password\": \"Test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/staff/register/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"staff",
+						"register",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Metrics",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics/http.server.requests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics",
+						"http.server.requests"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0IiwiaWF0IjoxNzI4MDIyOTg2LCJleHAiOjE3MzA2MTQ5ODZ9.XuaQ0wi_g3bpI2C-1aVXloguUknAtZJRaNPq4ClkLAs",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

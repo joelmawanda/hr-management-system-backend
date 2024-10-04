@@ -17,7 +17,8 @@ public class StaffDTO {
     private String otherNames;
 
     @NotNull(message = "Date of birth is required")
-    @JsonFormat(pattern="dd-MM-yyyy")
+    //@JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dateOfBirth;
     private String idPhoto;  // Base64-encoded image string
 

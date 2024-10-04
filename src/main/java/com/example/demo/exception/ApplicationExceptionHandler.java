@@ -61,6 +61,8 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_FAILURE_CODE, Constants.OPERATION_FAILED_DESCRIPTION, "Invalid account number"), HttpStatus.FORBIDDEN);
     }
 
-
-
+//    @ExceptionHandler(PSQLException.class)
+//    public ResponseEntity<ApiResponse> handleMethodArgumentTypeMismatchException(PSQLException ex) {
+//        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_FAILURE_CODE, Constants.OPERATION_FAILED_DESCRIPTION, "Invalid account number"), HttpStatus.FORBIDDEN);
+//    }
 }

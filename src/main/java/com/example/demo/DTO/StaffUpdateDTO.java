@@ -7,7 +7,7 @@ import java.time.LocalDate;
 //This DTO will be used for the Staff Update API to allow updates to Date of Birth and ID Photo only.
 public class StaffUpdateDTO {
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dateOfBirth;
     private String idPhoto;  // Base64-encoded image string
 

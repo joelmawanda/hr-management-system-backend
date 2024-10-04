@@ -59,7 +59,8 @@ public class StaffController {
         Staff newStaff = new Staff();
         newStaff.setValidationCode(validationCode);
         staffService.saveStaff(newStaff);
-        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Your validation code is : " + newStaff.getValidationCode()), HttpStatus.OK);
+//        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Your validation code is : " + newStaff.getValidationCode()), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Successfully generated code", newStaff.getValidationCode()), HttpStatus.OK);
     }
 
     //Staff registration API
@@ -67,7 +68,8 @@ public class StaffController {
     @PutMapping("/register")
     public ResponseEntity<?> saveStaffDetails(@RequestParam String validationCode, @Valid @RequestBody StaffDTO staffDTO) {
         Staff staffDetails = staffService.saveStaffDetails(validationCode, staffDTO);
-        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff created successfully with employee number: " + staffDetails.getEmployeeNumber()), HttpStatus.OK);
+//        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff created successfully with employee number: " + staffDetails.getEmployeeNumber()), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(Constants.OPERATION_SUCCESS_CODE, Constants.OPERATION_SUCCESS_DESCRIPTION, "Staff created successfully", staffDetails.getEmployeeNumber()), HttpStatus.OK);
     }
 
     //Staff Retrieval API

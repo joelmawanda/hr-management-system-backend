@@ -1,4 +1,4 @@
-# Customer-Loans-API
+# HR-Management-API
 This API provides information on staff details. The user must first authenticate in order to use it. 
 
 # Getting started

@@ -16,6 +16,8 @@ public class StaffDTO {
     @NotBlank(message = "Other names are required")
     private String otherNames;
 
+    private String imageUrl;
+
     @NotNull(message = "Date of birth is required")
     //@JsonFormat(pattern="dd-MM-yyyy")
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -64,6 +66,14 @@ public class StaffDTO {
 
     public void setValidationCode(String validationCode) {
         this.validationCode = validationCode;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

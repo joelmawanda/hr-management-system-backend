@@ -20,6 +20,7 @@ public class Staff {
     private String surname;
     private String otherNames;
     private LocalDate dateOfBirth;
+    private String imageUrl;
 
     @Column(columnDefinition = "TEXT")
     private String idPhoto;  // Base64 encoded string
